@@ -50,8 +50,7 @@ class Server:
 
         start_index, end_index = index_range(page, page_size)
         return data[start_index:end_index]
-    
-    
+
     def get_hyper(self, page=1, page_size=10):
         """
         This function retrieves a paginated
