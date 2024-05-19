@@ -50,6 +50,41 @@ class Server:
 
         start_index, end_index = index_range(page, page_size)
         return data[start_index:end_index]
+    
+    
+    def get_hyper(page=1, page_size=10):
+        """
+        This function retrieves a paginated
+        list of baby names with additional metadata.
+
+        Args:
+            page: The desired page number (default: 1).
+            page_size: The number of items per page (default: 10).
+
+        Returns:
+            A dictionary containing information
+            about the requested page.
+        """
+
+        # Call get_page to retrieve the data
+        data = get_page(page, page_size)
+
+        # Calculate total number of pages
+        total_pages = math.ceil(len(data) / page_size)
+
+        # Determine next and prev page numbers
+        next_page = page + 1 if page < total_pages else None
+        prev_page = page - 1 if page > 1 else None
+
+        # Return the hypermedia data
+        return {
+          "page_size": page_size,
+          "page": page,
+          "data": data,
+          "next_page": next_page,
+          "prev_page": prev_page,
+          "total_pages": total_pages,
+        }
 
 
 def index_range(page: int, page_size: int) -> tuple():
