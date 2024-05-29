@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""5-app.py
+"""A simple flask app
 """
 
 
@@ -8,10 +8,7 @@ from flask_babel import Babel
 
 
 class Config(object):
-    """_summary_
-
-    Returns:
-                    _type_: _description_
+    """Config Class 
     """
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = 'en'
@@ -34,7 +31,7 @@ users = {
 
 
 def get_user():
-    """checks if user exits or not
+    """returns a user dictionary or None if the ID cannot be found
     """
     login_id = request.args.get('login_as')
     if login_id:
@@ -52,7 +49,11 @@ def before_request() -> None:
 
 @babel.localeselector
 def get_locale():
-    """Gets Default Language"""
+    """_summary_
+
+    Returns:
+                    _type_: _description_
+    """
     locale = request.args.get('locale')
     if locale in app.config['LANGUAGES']:
         print(locale)
@@ -60,12 +61,12 @@ def get_locale():
 
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
-
+# babel.init_app(app, locale_selector=get_locale)
 
 
 @app.route('/')
 def index():
-    """Index Route
+    """_summary_
     """
     return render_template('5-index.html')
 

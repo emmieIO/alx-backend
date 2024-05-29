@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 from flask_babel import Babel
 
 
-class Config:
+class Config(object):
     """Configuration class for Flask app.
     """
     LANGUAGES = ["en", "fr"]
@@ -26,7 +26,7 @@ def get_locale():
 
 @app.route('/', strict_slashes=False)
 def index():
-    """index route
+    """his route renders a Hello Word
     """
     return render_template('2-index.html')
 
