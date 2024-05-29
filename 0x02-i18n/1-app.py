@@ -2,7 +2,6 @@
 """0-app.py server creation"""
 from flask import Flask, render_template
 from flask_babel import Babel
-from config import Config
 
 
 class Config:
